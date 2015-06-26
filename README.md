@@ -1,3 +1,3 @@
 # bae-zeus-x
 
-## Our bae Bezos
+## Our Bae Bezos
