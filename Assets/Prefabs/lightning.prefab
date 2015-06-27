@@ -11,6 +11,7 @@ GameObject:
   - 212: {fileID: 21255122}
   - 61: {fileID: 6135246}
   - 50: {fileID: 5004570}
+  - 114: {fileID: 11490514}
   m_Layer: 0
   m_Name: lightning
   m_TagString: Untagged
@@ -45,7 +46,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
-  m_Constraints: 4
+  m_Constraints: 0
 --- !u!61 &6135246
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -59,6 +60,17 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: 3.95000005, y: 1.94000006}
+--- !u!114 &11490514
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 164106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d4c0659e931447428294fce31996ea2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &21255122
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -102,10 +114,18 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_Constraints
-      value: 4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_IsKinematic
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []

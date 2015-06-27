@@ -16,7 +16,9 @@ public class LightningBehavior : MonoBehaviour {
 	}
 	
 	void FixedUpdate() {
-		
+		print (this.GetComponent<Rigidbody2D> ().velocity);
+		this.GetComponent<Rigidbody2D> ().velocity = new Vector3 (10.0F, 0.0F, 0.0F);
+		print (this.GetComponent<Rigidbody2D> ().velocity);
 	}
 }
 

@@ -192,7 +192,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22437470, guid: f9cb116884e42e84e997dc4cd784a64c, type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 22437470, guid: f9cb116884e42e84e997dc4cd784a64c, type: 2}
       propertyPath: m_AnchoredPosition.x
@@ -350,7 +350,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 438498, guid: eaa55b5c173caea4d81643b257139fcb, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: eaa55b5c173caea4d81643b257139fcb, type: 2}
@@ -615,6 +615,8 @@ MonoBehaviour:
   manaRechargeAmount: 0
   player: {fileID: 1715638258}
   lightning: {fileID: 164106, guid: 0f40431a746f8734f836d6aec6018028, type: 2}
+  monkey: {fileID: 183844, guid: ecce2aab166cadf40826a2366cdd822e, type: 2}
+  house: {fileID: 0}
 --- !u!114 &1563861354
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -632,6 +634,20 @@ MonoBehaviour:
 GameObject:
   m_PrefabParentObject: {fileID: 126400, guid: 77c445818c315ad45b3cd0310556c5e3, type: 2}
   m_PrefabInternal: {fileID: 1992859635}
+--- !u!68 &1715638261
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1715638258}
+  m_Enabled: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 0}
+  m_Points:
+  - {x: -2.61500001, y: 0}
+  - {x: 2.61500001, y: 0}
 --- !u!1001 &1800479456
 Prefab:
   m_ObjectHideFlags: 0
@@ -669,7 +685,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 467104, guid: 5ed4668f204bdfe41bd9b8654ba675fa, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5ed4668f204bdfe41bd9b8654ba675fa, type: 2}
@@ -687,7 +703,7 @@ GameObject:
   - 124: {fileID: 1917689923}
   - 81: {fileID: 1917689922}
   - 114: {fileID: 1917689927}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -759,7 +775,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 4
 --- !u!114 &1917689927
 MonoBehaviour:
   m_ObjectHideFlags: 0
