@@ -36,6 +36,25 @@ public class GameManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
+		// GameCircle
+		AGSClient.ServiceReadyEvent += serviceReadyHandler;
+		AGSClient.ServiceNotReadyEvent += serviceNotReadyHandler;
+		bool usesLeaderboards = true;
+		bool usesAchievements = true;
+		bool usesWhispersync = false;
+		
+		AGSClient.Init (usesLeaderboards, usesAchievements, usesWhispersync);
+
+
+
+
+			
+			AGSAchievementsClient.UpdateAchievementSucceededEvent += updateAchievementSucceeded;
+			AGSAchievementsClient.UpdateAchievementFailedEvent += updateAchievementFailed;
+		Debug.Log("GG");
+			AGSAchievementsClient.UpdateAchievementProgress("enter_game_achievment",50.0f);
+
+
 	}
 
 	
@@ -156,6 +175,24 @@ public class GameManager : MonoBehaviour {
 		}
 	}
 
+	//Game Circle
+	private void serviceNotReadyHandler (string error)    {
+		Debug.Log("Service is not ready");
+	}
+
+	//Game Circle
+	private void serviceReadyHandler ()    {
+		Debug.Log("Service is ready");
+	}
+
+	private void updateAchievementSucceeded(string achievementId) {
+		Debug.Log ("Ya Achievement!!!");
+	}
+	
+	private void updateAchievementFailed(string achievementId, string error) {
+		Debug.Log ("Sad no achievement");
+	}
+	
 	public void endGame() {
 		gameRunning = false;
 	}
