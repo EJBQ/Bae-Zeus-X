@@ -44,6 +44,8 @@ public class BaeZeusScript : CharacterBehavior {
 
 	public override void setHealth(int newHealth) {
 		this.health = newHealth;
+		if (newHealth > 0)
+			deathFlag = false;
 	}
 
 	public int getHealth() {

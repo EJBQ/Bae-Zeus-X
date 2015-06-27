@@ -14,10 +14,13 @@ public class MonkeyScript : CharacterBehavior {
 	}
 	
 	void Update() {
-		var number = Random.Range (1, 81);
-		if (number == 77) {
-			Toss();
+		if (!deathFlag) {
+			var number = Random.Range (1, 81);
+			if (number == 77) {
+				Toss ();
+			}
 		}
+
 	}
 	
 	void FixedUpdate() {

@@ -35,6 +35,11 @@ public class GameManager : MonoBehaviour {
 	private bool gameRunning = false;
 	private bool isServiceReady;
 
+	private float monkeySpawnRate;
+	private float houseSpawnRate;
+	private long monkeySpawnTime;
+	private long houseSpawnTime;
+
 	// Use this for initialization
 	void Start () {
 
@@ -54,7 +59,6 @@ public class GameManager : MonoBehaviour {
 			AGSAchievementsClient.UpdateAchievementFailedEvent += updateAchievementFailed;
 			AGSAchievementsClient.UpdateAchievementProgress ("enter_game_achievment", 50.0f);
 		}
-
 
 	}
 
@@ -90,7 +94,7 @@ public class GameManager : MonoBehaviour {
 		shots = 0;
 		player.GetComponent<Rotator> ().rotateSpeed = 0;
 		player.GetComponent<CharacterBehavior> ().setHealth (3);
-
+		player.transform.rotation = Quaternion.identity;
 		tabletsDelivered = 0;
 		monkeySpawnTime = 400;
 		houseSpawnTime = 200;
@@ -98,6 +102,7 @@ public class GameManager : MonoBehaviour {
 		houseSpawnRate = 1;
 
 		gameRunning = true;
+
 	}
 
 	public GameObject getTablet() {
@@ -116,11 +121,14 @@ public class GameManager : MonoBehaviour {
 		if (player != null) {
 			lives = player.GetComponent<BaeZeusScript> ().getHealth();
 		}
-		GUI.Label(new Rect(Screen.width /16, Screen.height/16, Screen.width/4, Screen.height/4), "Score: " + tabletsDelivered + "\n" 
+		GUI.Label(new Rect(Screen.width /2 - Screen.width/16, Screen.height/16, Screen.width/4, Screen.height/4), "Score: " + tabletsDelivered + "\n" 
 		          + "Tablets Left: " + tabletLives + "\n" 
 		          + "Lives Left: " + lives); 
 		if (!gameRunning) {
-			if(GUI.Button(new Rect(Screen.width /2, Screen.height/2, Screen.width/8, Screen.height/8), "Start")) {
+			if(GUI.Button(new Rect(Screen.width /4, 3*Screen.height/8, Screen.width/2, Screen.height/4), "Start" + "\n" 
+			              + "Tap to drop a tablet in the chimney" + "\n" 
+			              + "Swipe right to throw lightning" + "\n"
+			              + "And don't get hit!")) {
 				gameStart();
 			}
 		}
@@ -167,6 +175,7 @@ public class GameManager : MonoBehaviour {
 		GameObject lighting = (GameObject) Instantiate(this.lightning, player.transform.position, Quaternion.identity);
 		//Rigidbody2D rb2d = lightning.GetComponent<Rigidbody2D> ();
 		//rb2d.velocity = new Vector3(0.0F, -5.0F, 0.0F);
+
 	}
 
 	void spawnMonkey() {

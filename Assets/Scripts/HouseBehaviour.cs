@@ -41,7 +41,7 @@ public class HouseBehaviour : MonoBehaviour {
 	void OnGUI() {
 		if (displayMessage) {
 			Vector3 pos = transform.position;
-			GUI.DrawTexture(new Rect(pos.x , pos.y - Screen.height/20, 60, 60), currentTexture, ScaleMode.ScaleToFit, true, 0f);
+			GUI.DrawTexture(new Rect(pos.x , pos.y + Screen.height/20, 100, 100), currentTexture, ScaleMode.ScaleToFit, true, 0f);
 		}
 	}
 
