@@ -26,6 +26,7 @@ GameObject:
   - 4: {fileID: 460452}
   - 114: {fileID: 11438312}
   - 61: {fileID: 6119914}
+  - 50: {fileID: 5098986}
   m_Layer: 0
   m_Name: House1
   m_TagString: Untagged
@@ -58,6 +59,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 460452}
   m_RootOrder: 0
+--- !u!50 &5098986
+Rigidbody2D:
+  serializedVersion: 2
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 182130}
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: .0500000007
+  m_GravityScale: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!61 &6119914
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -142,6 +159,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_IsKinematic
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
