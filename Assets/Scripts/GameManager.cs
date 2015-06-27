@@ -222,7 +222,7 @@ public class GameManager : MonoBehaviour {
 		if (tabletsDelivered > highScore)
 			highScore = tabletsDelivered;
 
-		if (tabletsDelivered > 10) {
+		if (tabletsDelivered > 5) {
 
 			if (isServiceReady) {
 				AGSAchievementsClient.UpdateAchievementSucceededEvent += updateAchievementSucceeded;
