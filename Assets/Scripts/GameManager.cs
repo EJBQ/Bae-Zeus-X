@@ -35,11 +35,6 @@ public class GameManager : MonoBehaviour {
 	private bool gameRunning = false;
 	private bool isServiceReady;
 
-	private float monkeySpawnRate;
-	private float houseSpawnRate;
-	private long monkeySpawnTime;
-	private long houseSpawnTime;
-
 	// Use this for initialization
 	void Start () {
 
@@ -59,7 +54,6 @@ public class GameManager : MonoBehaviour {
 			AGSAchievementsClient.UpdateAchievementFailedEvent += updateAchievementFailed;
 			AGSAchievementsClient.UpdateAchievementProgress ("enter_game_achievment", 50.0f);
 		}
-
 	}
 
 	
@@ -172,6 +166,7 @@ public class GameManager : MonoBehaviour {
 	void throwLightning() {
 		Animator anim = player.GetComponent<Animator> ();
 		anim.SetBool ("ThrowLightning", true);
+		Debug.Log ("Throwing the lightening!");
 		GameObject lighting = (GameObject) Instantiate(this.lightning, player.transform.position, Quaternion.identity);
 		//Rigidbody2D rb2d = lightning.GetComponent<Rigidbody2D> ();
 		//rb2d.velocity = new Vector3(0.0F, -5.0F, 0.0F);
