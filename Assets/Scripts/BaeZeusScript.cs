@@ -31,19 +31,23 @@ public class BaeZeusScript : CharacterBehavior {
 	
 			transform.position = newPosition;
 		}else {
-			this.GetComponent<Rigidbody2D>().velocity = new Vector3(0.0F, 10.0F, 0.0F);
+			//this.GetComponent<Rigidbody2D>().velocity = new Vector3(0.0F, 10.0F, 0.0F);
 		}
 	}
 
 	public override void loseHealth() {
 		this.health --;
-		if (health == 0) {
+		if (health < 1) {
 			deathAnim();
 		}
 	}
 
 	public override void setHealth(int newHealth) {
 		this.health = newHealth;
+	}
+
+	public int getHealth() {
+		return health;
 	}
 	
 	private void deathAnim() {

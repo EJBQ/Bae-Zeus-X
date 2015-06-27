@@ -80,7 +80,7 @@ PlayerSettings:
   virtualRealitySupported: 0
   productGUID: 9fc8cbdd5d4b8fc48bec97f67d4f6a8c
   AndroidBundleVersionCode: 1
-  AndroidMinSdkVersion: 9
+  AndroidMinSdkVersion: 10
   AndroidPreferredInstallLocation: 1
   aotOptions: 
   apiCompatibilityLevel: 2
@@ -121,7 +121,7 @@ PlayerSettings:
   AndroidTargetDevice: 0
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
-  AndroidKeystoreName: C:/Users/roxtay/BaeZeus/Bae-Zeus-X/user.keystore
+  AndroidKeystoreName: C:/Users/ericquin/Documents/Bae'Zeus X/user.keystore
   AndroidKeyaliasName: key
   AndroidTVCompatibility: 1
   AndroidIsGame: 1

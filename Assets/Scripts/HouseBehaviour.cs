@@ -5,7 +5,7 @@ public class HouseBehaviour : MonoBehaviour {
 
 	public Texture success1, success2, success3;
 	Texture[] texArr;
-	private int speed = 3;
+	public int speed = 3;
 	private Rigidbody2D rb;
 	private BoxCollider2D boxCollider;
 	private bool displayMessage;
@@ -41,7 +41,7 @@ public class HouseBehaviour : MonoBehaviour {
 	void OnGUI() {
 		if (displayMessage) {
 			Vector3 pos = transform.position;
-			GUI.DrawTexture(new Rect(pos.x + 100f, pos.y + 275f, 60, 60), currentTexture, ScaleMode.ScaleToFit, true, 0f);
+			GUI.DrawTexture(new Rect(pos.x , pos.y - Screen.height/20, 60, 60), currentTexture, ScaleMode.ScaleToFit, true, 0f);
 		}
 	}
 

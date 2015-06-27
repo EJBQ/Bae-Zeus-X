@@ -3,11 +3,8 @@ using System.Collections;
 
 public class iPhoneBehaviour : MonoBehaviour {
 
+	public GameObject player;
 	public GameObject blueStars;
-	// Use this for initialization
-	void Start () {
-	
-	}
 	
 	void FixedUpdate() {
 		if (this.gameObject.transform.position.y < -11) {
@@ -20,13 +17,11 @@ public class iPhoneBehaviour : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D collider) {
-
-		if (collider.gameObject.CompareTag("Player")) {
+		if (collider.gameObject.CompareTag("Health")) {
 			Instantiate(blueStars, this.gameObject.transform.position, Quaternion.identity);
 			collider.gameObject.GetComponent<CharacterBehavior>().loseHealth();
 			Invoke ("die", 1.2f);
 		}
-
 	}
 
 	void die() {
