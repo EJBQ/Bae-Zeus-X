@@ -8,9 +8,6 @@ public class GameManager : MonoBehaviour {
 
 	// These are set in the Unity Editor
 
-	// Bae
-	public GameObject baeZeus;
-
 	// Mana
 	public Slider manaSlider;
 	public int manaDownAmount;
@@ -80,7 +77,7 @@ public class GameManager : MonoBehaviour {
 	void throwLightning() {
 		GameObject lighting = (GameObject) Instantiate(lightning, player.transform.position, Quaternion.identity);
 		Rigidbody2D rb2d = lightning.GetComponent<Rigidbody2D> ();
-		rb2d.AddForce(new Vector2(10.0F, 0.0F));
+		rb2d.velocity = (new Vector3(10.0F, 0.0F, 0.0F));
 	}
 }
 
