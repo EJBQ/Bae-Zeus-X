@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour {
 	public int manaDownAmount;
 	public int manaRechargeAmount;
 	private int shots;
+	private int highScore;
 	public int tabletsDelivered;
 
 	public GameObject player;
@@ -32,9 +33,28 @@ public class GameManager : MonoBehaviour {
 	private long houseSpawnTime;
 
 	private bool gameRunning = false;
+	private bool isServiceReady;
 
 	// Use this for initialization
 	void Start () {
+
+		// GameCircle
+		AGSClient.ServiceReadyEvent += serviceReadyHandler;
+		AGSClient.ServiceNotReadyEvent += serviceNotReadyHandler;
+		bool usesLeaderboards = true;
+		bool usesAchievements = true;
+		bool usesWhispersync = false;
+		
+		AGSClient.Init (usesLeaderboards, usesAchievements, usesWhispersync);
+
+		isServiceReady = AGSClient.IsServiceReady();
+
+		if (isServiceReady) {
+			AGSAchievementsClient.UpdateAchievementSucceededEvent += updateAchievementSucceeded;
+			AGSAchievementsClient.UpdateAchievementFailedEvent += updateAchievementFailed;
+			AGSAchievementsClient.UpdateAchievementProgress ("enter_game_achievment", 50.0f);
+		}
+
 
 	}
 
@@ -54,13 +74,13 @@ public class GameManager : MonoBehaviour {
 		monkeySpawnTime --;
 		if (monkeySpawnTime <= 0) {
 			spawnMonkey ();
-			monkeySpawnTime = (long) (Random.value * monkeySpawnRate * 800F);
+			monkeySpawnTime = (long) (100 + Random.value * monkeySpawnRate * 400F);
 		}
 
 		houseSpawnTime --;
 		if (houseSpawnTime <= 0) {
 			spawnHouse ();
-			houseSpawnTime = (long) (Random.value * houseSpawnRate * 400F);
+			houseSpawnTime = (long) (50 + Random.value * houseSpawnRate * 200F);
 		}
 
 	}
@@ -68,6 +88,8 @@ public class GameManager : MonoBehaviour {
 	void gameStart() {
 		tabletLives = 10;
 		shots = 0;
+		player.GetComponent<Rotator> ().rotateSpeed = 0;
+		player.GetComponent<CharacterBehavior> ().setHealth (3);
 
 		tabletsDelivered = 0;
 		monkeySpawnTime = 400;
@@ -82,13 +104,21 @@ public class GameManager : MonoBehaviour {
 		return tablet;
 	}
 
-	// Catch all for everything that happens when Bae is hurt :(
-	public void takeDamage(){
-
+	public int getScore() {
+		return highScore;
 	}
 
 	void OnGUI() {
-		GUI.Label(new Rect(Screen.width /16, Screen.height/16, Screen.width/16, Screen.height/16), "Score: " + tabletsDelivered); 
+		GUI.skin.label.fontSize = 20;
+		GUI.skin.button.fontSize = 20;
+
+		int lives = 0;
+		if (player != null) {
+			lives = player.GetComponent<BaeZeusScript> ().getHealth();
+		}
+		GUI.Label(new Rect(Screen.width /16, Screen.height/16, Screen.width/4, Screen.height/4), "Score: " + tabletsDelivered + "\n" 
+		          + "Tablets Left: " + tabletLives + "\n" 
+		          + "Lives Left: " + lives); 
 		if (!gameRunning) {
 			if(GUI.Button(new Rect(Screen.width /2, Screen.height/2, Screen.width/8, Screen.height/8), "Start")) {
 				gameStart();
@@ -98,13 +128,16 @@ public class GameManager : MonoBehaviour {
 
 	// Right now activated when TestButton is clicked!!
 	public void shootMana(){
+		if (gameRunning) {
 		if (manaSlider.value > manaDownAmount) {
 			manaSlider.value -= manaDownAmount;
 			Debug.Log (++shots);
+			
 			throwLightning ();
 		} else {
 			Debug.Log ("No Mana left");
 			shots = 0;
+		}
 		}
 	}
 
@@ -121,12 +154,16 @@ public class GameManager : MonoBehaviour {
 	}
 
 	void dropTablet() {
-		GameObject tablet = (GameObject) Instantiate(getTablet(), player.transform.position, Quaternion.identity);
-		Rigidbody2D rb2d = tablet.GetComponent<Rigidbody2D> ();
-		rb2d.velocity = new Vector3(0.0F, -5.0F, 0.0F);
+		if (gameRunning) {
+			GameObject tablet = (GameObject)Instantiate (getTablet (), player.transform.position, Quaternion.identity);
+			Rigidbody2D rb2d = tablet.GetComponent<Rigidbody2D> ();
+			rb2d.velocity = new Vector3 (0.0F, -5.0F, 0.0F);
+		}
 	}
 
 	void throwLightning() {
+		Animator anim = player.GetComponent<Animator> ();
+		anim.SetBool ("ThrowLightning", true);
 		GameObject lighting = (GameObject) Instantiate(this.lightning, player.transform.position, Quaternion.identity);
 		//Rigidbody2D rb2d = lightning.GetComponent<Rigidbody2D> ();
 		//rb2d.velocity = new Vector3(0.0F, -5.0F, 0.0F);
@@ -156,9 +193,57 @@ public class GameManager : MonoBehaviour {
 		}
 	}
 
+	//Game Circle
+	private void serviceNotReadyHandler (string error)    {
+		Debug.Log("Service is not ready");
+	}
+
+	//Game Circle
+	private void serviceReadyHandler ()    {
+		Debug.Log("Service is ready");
+	}
+
+	private void updateAchievementSucceeded(string achievementId) {
+		Debug.Log ("Ya Achievement!!!");
+	}
+	
+	private void updateAchievementFailed(string achievementId, string error) {
+		Debug.Log ("Sad no achievement");
+	}
+
+	private void submitScoreSucceeded(string leaderboardId){
+		Debug.Log ("Score uploaded: " + shots + " to: " + leaderboardId);
+	}
+	
+	private void submitScoreFailed(string leaderboardId, string error){
+		
+	}
+	
 	public void endGame() {
 		gameRunning = false;
+
+		if (tabletsDelivered > highScore)
+			highScore = tabletsDelivered;
+
+		if (tabletsDelivered > 10) {
+
+			if (isServiceReady) {
+				AGSAchievementsClient.UpdateAchievementSucceededEvent += updateAchievementSucceeded;
+				AGSAchievementsClient.UpdateAchievementFailedEvent += updateAchievementFailed;;
+				AGSAchievementsClient.UpdateAchievementProgress("tablets_achievment",50.0f);
+			}
+		}
+		if (isServiceReady) {			
+			AGSLeaderboardsClient.SubmitScoreSucceededEvent += submitScoreSucceeded;
+			AGSLeaderboardsClient.SubmitScoreFailedEvent += submitScoreFailed;
+			AGSLeaderboardsClient.SubmitScore("tablets_leaderboard",tabletsDelivered);
+		}
+		GameObject[] respawns;
+		respawns = GameObject.FindGameObjectsWithTag("Enemy");
+		foreach(GameObject go in respawns) {
+			Destroy(go);
+		}
 	}
+	
 }
-
-
+	
