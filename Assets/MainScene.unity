@@ -168,11 +168,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22474860, guid: f9cb116884e42e84e997dc4cd784a64c, type: 2}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22474860, guid: f9cb116884e42e84e997dc4cd784a64c, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f9cb116884e42e84e997dc4cd784a64c, type: 2}
@@ -316,6 +316,18 @@ Prefab:
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 1917689921}
+    - target: {fileID: 11412296, guid: ef29cef4be33c2641ad41b2aae6b9b66, type: 2}
+      propertyPath: house2
+      value: 
+      objectReference: {fileID: 158810, guid: a7a899494a63cd04ab25c0969d2b78d9, type: 2}
+    - target: {fileID: 11412296, guid: ef29cef4be33c2641ad41b2aae6b9b66, type: 2}
+      propertyPath: house3
+      value: 
+      objectReference: {fileID: 133104, guid: 87a9a1217bcdcbe49a45bc91e7287a8d, type: 2}
+    - target: {fileID: 11412296, guid: ef29cef4be33c2641ad41b2aae6b9b66, type: 2}
+      propertyPath: house4
+      value: 
+      objectReference: {fileID: 115474, guid: 5cb518a5d898bbd429d5c14979318c1f, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ef29cef4be33c2641ad41b2aae6b9b66, type: 2}
   m_IsPrefabParent: 0
@@ -333,20 +345,6 @@ Transform:
 GameObject:
   m_PrefabParentObject: {fileID: 126400, guid: 77c445818c315ad45b3cd0310556c5e3, type: 2}
   m_PrefabInternal: {fileID: 1992859635}
---- !u!68 &1715638261
-EdgeCollider2D:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1715638258}
-  m_Enabled: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_Offset: {x: 0, y: 0}
-  m_Points:
-  - {x: -2.61500001, y: 0}
-  - {x: 2.61500001, y: 0}
 --- !u!1001 &1800479456
 Prefab:
   m_ObjectHideFlags: 0
@@ -529,6 +527,10 @@ Prefab:
     - target: {fileID: 424914, guid: 77c445818c315ad45b3cd0310556c5e3, type: 2}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11497334, guid: 77c445818c315ad45b3cd0310556c5e3, type: 2}
+      propertyPath: health
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 77c445818c315ad45b3cd0310556c5e3, type: 2}

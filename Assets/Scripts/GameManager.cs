@@ -19,23 +19,23 @@ public class GameManager : MonoBehaviour {
 	public GameObject lightning;
 	public GameObject monkey;
 	public GameObject house;
+	public GameObject house2;
+	public GameObject house3;
+	public GameObject house4;
 	public GameObject mainCamera;
 	
 	private int tabletLives;
-	private int healthLives;
 
 	private float monkeySpawnRate;
 	private float houseSpawnRate;
 	private long monkeySpawnTime;
 	private long houseSpawnTime;
 
+	private bool gameRunning = false;
+
 	// Use this for initialization
 	void Start () {
-		tabletsDelivered = 0;
-		monkeySpawnTime = 400;
-		houseSpawnTime = 200;
-		monkeySpawnRate = 1;
-		houseSpawnRate = 1;
+
 	}
 
 	
@@ -43,6 +43,9 @@ public class GameManager : MonoBehaviour {
 	}
 	
 	void FixedUpdate () {
+
+		if (!gameRunning)
+			return;
 
 		manaSlider.value += manaRechargeAmount * Time.fixedDeltaTime * 3;
 		monkeySpawnRate *= .9999999F;
@@ -64,13 +67,15 @@ public class GameManager : MonoBehaviour {
 
 	void gameStart() {
 		tabletLives = 10;
-		healthLives = 3;
 		shots = 0;
+
+		tabletsDelivered = 0;
+		monkeySpawnTime = 400;
+		houseSpawnTime = 200;
 		monkeySpawnRate = 1;
 		houseSpawnRate = 1;
-		monkeySpawnTime = 1000;
-		houseSpawnTime = 500;
-		tabletsDelivered = 0;
+
+		gameRunning = true;
 	}
 
 	public GameObject getTablet() {
@@ -80,6 +85,15 @@ public class GameManager : MonoBehaviour {
 	// Catch all for everything that happens when Bae is hurt :(
 	public void takeDamage(){
 
+	}
+
+	void OnGUI() {
+		GUI.Label(new Rect(Screen.width /16, Screen.height/16, Screen.width/16, Screen.height/16), "Score: " + tabletsDelivered); 
+		if (!gameRunning) {
+			if(GUI.Button(new Rect(Screen.width /2, Screen.height/2, Screen.width/8, Screen.height/8), "Start")) {
+				gameStart();
+			}
+		}
 	}
 
 	// Right now activated when TestButton is clicked!!
@@ -96,6 +110,10 @@ public class GameManager : MonoBehaviour {
 
 	public void destroyTabletOffScreen(TabletBehavior tb) {
 		Destroy (tb.gameObject);
+		tabletLives --;
+		if (tabletLives == 0) {
+			endGame();
+		}
 	}
 
 	public void tap() {
@@ -120,8 +138,26 @@ public class GameManager : MonoBehaviour {
 	}
 
 	void spawnHouse() {
-		GameObject house = (GameObject) Instantiate(this.house, mainCamera.transform.position + new Vector3 (15.0F, -5.0F, 10.0F), Quaternion.identity);
+		int houseChoose = (int)Random.Range (1, 4);
+		
+		switch(houseChoose) {
+		case 1 :
+			GameObject house = (GameObject) Instantiate(this.house, mainCamera.transform.position + new Vector3 (20.0F, -5.0F, 10.0F), Quaternion.identity);
+			break;
+		case 2:
+			GameObject house2 = (GameObject) Instantiate(this.house2, mainCamera.transform.position + new Vector3 (20.0F, -5.0F, 10.0F), Quaternion.identity);
+			break;
+		case 3:
+			GameObject house3 = (GameObject) Instantiate(this.house3, mainCamera.transform.position + new Vector3 (20.0F, -5.0F, 10.0F), Quaternion.identity);
+			break;
+		case 4:
+			GameObject house4 = (GameObject) Instantiate(this.house4, mainCamera.transform.position + new Vector3 (20.0F, -5.0F, 10.0F), Quaternion.identity);
+			break;
+		}
+	}
 
+	public void endGame() {
+		gameRunning = false;
 	}
 }
 

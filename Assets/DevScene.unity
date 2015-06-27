@@ -136,7 +136,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -464,10 +464,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 11439404, guid: ecce2aab166cadf40826a2366cdd822e, type: 2}
+    - target: {fileID: 11419316, guid: ecce2aab166cadf40826a2366cdd822e, type: 2}
       propertyPath: player
       value: 
-      objectReference: {fileID: 1120772370}
+      objectReference: {fileID: 232579439}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ecce2aab166cadf40826a2366cdd822e, type: 2}
   m_IsPrefabParent: 0
@@ -510,12 +510,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc318fa16983f964c8127834e2dbe10b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tablet: {fileID: 181730, guid: 62e6ff21049d71c4186307104bb0d774, type: 2}
+  tablet: {fileID: 0}
   manaSlider: {fileID: 867947307}
   manaDownAmount: 10
   manaRechargeAmount: 5
+  tabletsDelivered: 0
   player: {fileID: 0}
   lightning: {fileID: 0}
+  monkey: {fileID: 0}
+  house: {fileID: 0}
+  house2: {fileID: 0}
+  house3: {fileID: 0}
+  house4: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!1 &1611874685
 GameObject:
   m_ObjectHideFlags: 0
@@ -565,7 +572,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
