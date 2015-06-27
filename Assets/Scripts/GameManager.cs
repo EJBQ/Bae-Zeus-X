@@ -219,14 +219,10 @@ public class GameManager : MonoBehaviour {
 	public void endGame() {
 		gameRunning = false;
 
-<<<<<<< Updated upstream
 		if (tabletsDelivered > highScore)
 			highScore = tabletsDelivered;
-=======
-		if (shots > highScore)
-			highScore = shots;
-		if (shots > 10) {
->>>>>>> Stashed changes
+
+		if (tabletsDelivered > 10) {
 
 			if (isServiceReady) {
 				AGSAchievementsClient.UpdateAchievementSucceededEvent += updateAchievementSucceeded;
@@ -237,7 +233,7 @@ public class GameManager : MonoBehaviour {
 		if (isServiceReady) {			
 			AGSLeaderboardsClient.SubmitScoreSucceededEvent += submitScoreSucceeded;
 			AGSLeaderboardsClient.SubmitScoreFailedEvent += submitScoreFailed;
-			AGSLeaderboardsClient.SubmitScore("tablets_leaderboard",shots);
+			AGSLeaderboardsClient.SubmitScore("tablets_leaderboard",tabletsDelivered);
 		}
 		GameObject[] respawns;
 		respawns = GameObject.FindGameObjectsWithTag("Enemy");
