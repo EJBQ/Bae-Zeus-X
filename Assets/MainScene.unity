@@ -168,11 +168,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22474860, guid: f9cb116884e42e84e997dc4cd784a64c, type: 2}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22474860, guid: f9cb116884e42e84e997dc4cd784a64c, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f9cb116884e42e84e997dc4cd784a64c, type: 2}
@@ -316,6 +316,18 @@ Prefab:
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 1917689921}
+    - target: {fileID: 11412296, guid: ef29cef4be33c2641ad41b2aae6b9b66, type: 2}
+      propertyPath: house2
+      value: 
+      objectReference: {fileID: 158810, guid: a7a899494a63cd04ab25c0969d2b78d9, type: 2}
+    - target: {fileID: 11412296, guid: ef29cef4be33c2641ad41b2aae6b9b66, type: 2}
+      propertyPath: house3
+      value: 
+      objectReference: {fileID: 133104, guid: 87a9a1217bcdcbe49a45bc91e7287a8d, type: 2}
+    - target: {fileID: 11412296, guid: ef29cef4be33c2641ad41b2aae6b9b66, type: 2}
+      propertyPath: house4
+      value: 
+      objectReference: {fileID: 115474, guid: 5cb518a5d898bbd429d5c14979318c1f, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ef29cef4be33c2641ad41b2aae6b9b66, type: 2}
   m_IsPrefabParent: 0
