@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour {
 	public GameObject lightning;
 	public GameObject monkey;
 	public GameObject house;
+	public GameObject mainCamera;
 	
 	private int tabletLives;
 	private int healthLives;
@@ -31,8 +32,10 @@ public class GameManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		tabletsDelivered = 0;
-		monkeySpawnTime = 1000;
-		houseSpawnTime = 500;
+		monkeySpawnTime = 400;
+		houseSpawnTime = 200;
+		monkeySpawnRate = 1;
+		houseSpawnRate = 1;
 	}
 
 	
@@ -42,19 +45,19 @@ public class GameManager : MonoBehaviour {
 	void FixedUpdate () {
 
 		manaSlider.value += manaRechargeAmount * Time.fixedDeltaTime * 3;
-		monkeySpawnRate *= .9999F;
-		houseSpawnRate *= 1.0001F;
+		monkeySpawnRate *= .9999999F;
+		houseSpawnRate *= 1.0000001F;
 
 		monkeySpawnTime --;
-		if (monkeySpawnTime == 0) {
+		if (monkeySpawnTime <= 0) {
 			spawnMonkey ();
-			monkeySpawnTime = (long) (Random.value * monkeySpawnRate * 1000F);
+			monkeySpawnTime = (long) (Random.value * monkeySpawnRate * 800F);
 		}
 
 		houseSpawnTime --;
-		if (houseSpawnTime == 0) {
+		if (houseSpawnTime <= 0) {
 			spawnHouse ();
-			houseSpawnTime = (long) (Random.value * houseSpawnTime * 1000F);
+			houseSpawnTime = (long) (Random.value * houseSpawnRate * 400F);
 		}
 
 	}
@@ -112,12 +115,12 @@ public class GameManager : MonoBehaviour {
 	}
 
 	void spawnMonkey() {
-		GameObject monkey = (GameObject) Instantiate(this.monkey, player.transform.position + new Vector3 (30.0F, 0.0F, 0.0F), Quaternion.identity);
+		GameObject monkey = (GameObject) Instantiate(this.monkey, mainCamera.transform.position + new Vector3 (15.0F, 4.0F, 10.0F), Quaternion.identity);
 	
 	}
 
 	void spawnHouse() {
-		//GameObject house = (GameObject) Instantiate(this.house, player.transform.position + new Vector3 (30.0F, 0.0F, 0.0F), Quaternion.identity);
+		GameObject house = (GameObject) Instantiate(this.house, mainCamera.transform.position + new Vector3 (15.0F, -5.0F, 10.0F), Quaternion.identity);
 
 	}
 }
