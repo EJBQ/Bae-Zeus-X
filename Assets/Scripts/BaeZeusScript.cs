@@ -4,16 +4,14 @@ using System.Collections;
 public class BaeZeusScript : MonoBehaviour {
 
 	GameManager gameManager;
-
-
+	
 	// Use this for initialization
 	void Start () {
 		gameManager = GameObject.Find("gameManager").GetComponent<GameManager>();
 	}
 
 	void Update() {
-		if (Input.GetMouseButtonDown (0))
-			dropTablet ();
+
 	}
 
 	void FixedUpdate () {
@@ -31,11 +29,5 @@ public class BaeZeusScript : MonoBehaviour {
 		transform.position = newPosition;
 
 
-	}
-
-	void dropTablet() {
-		GameObject tablet = (GameObject) Instantiate(gameManager.getTablet(), transform.position, Quaternion.identity);
-		Rigidbody2D rb2d = tablet.GetComponent<Rigidbody2D> ();
-		rb2d.velocity = new Vector3(0.0F, -5.0F, 0.0F);
 	}
 }
