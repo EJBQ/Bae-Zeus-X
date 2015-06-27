@@ -33,6 +33,7 @@ public class GameManager : MonoBehaviour {
 	private long houseSpawnTime;
 
 	private bool gameRunning = false;
+	private bool isServiceReady;
 
 	// Use this for initialization
 	void Start () {
@@ -46,14 +47,13 @@ public class GameManager : MonoBehaviour {
 		
 		AGSClient.Init (usesLeaderboards, usesAchievements, usesWhispersync);
 
+		isServiceReady = AGSClient.IsServiceReady();
 
-
-
-			
+		if (isServiceReady) {
 			AGSAchievementsClient.UpdateAchievementSucceededEvent += updateAchievementSucceeded;
 			AGSAchievementsClient.UpdateAchievementFailedEvent += updateAchievementFailed;
-		Debug.Log("GG");
-			AGSAchievementsClient.UpdateAchievementProgress("enter_game_achievment",50.0f);
+			AGSAchievementsClient.UpdateAchievementProgress ("enter_game_achievment", 50.0f);
+		}
 
 
 	}
@@ -206,13 +206,38 @@ public class GameManager : MonoBehaviour {
 	private void updateAchievementFailed(string achievementId, string error) {
 		Debug.Log ("Sad no achievement");
 	}
+
+	private void submitScoreSucceeded(string leaderboardId){
+		Debug.Log ("Score uploaded: " + shots + " to: " + leaderboardId);
+	}
+	
+	private void submitScoreFailed(string leaderboardId, string error){
+		
+	}
 	
 	public void endGame() {
 		gameRunning = false;
 
+<<<<<<< Updated upstream
 		if (tabletsDelivered > highScore)
 			highScore = tabletsDelivered;
+=======
+		if (shots > highScore)
+			highScore = shots;
+		if (shots > 10) {
+>>>>>>> Stashed changes
 
+			if (isServiceReady) {
+				AGSAchievementsClient.UpdateAchievementSucceededEvent += updateAchievementSucceeded;
+				AGSAchievementsClient.UpdateAchievementFailedEvent += updateAchievementFailed;;
+				AGSAchievementsClient.UpdateAchievementProgress("tablets_achievment",50.0f);
+			}
+		}
+		if (isServiceReady) {			
+			AGSLeaderboardsClient.SubmitScoreSucceededEvent += submitScoreSucceeded;
+			AGSLeaderboardsClient.SubmitScoreFailedEvent += submitScoreFailed;
+			AGSLeaderboardsClient.SubmitScore("tablets_leaderboard",shots);
+		}
 		GameObject[] respawns;
 		respawns = GameObject.FindGameObjectsWithTag("Enemy");
 		foreach(GameObject go in respawns) {
