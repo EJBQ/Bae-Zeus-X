@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour {
 	public int manaDownAmount;
 	public int manaRechargeAmount;
 	private int shots;
+	public int tabletsDelivered;
 
 	public GameObject player;
 	public GameObject lightning;
@@ -22,6 +23,7 @@ public class GameManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		tabletsDelivered = 0;
 	}
 
 	
