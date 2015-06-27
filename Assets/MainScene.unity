@@ -333,20 +333,6 @@ Transform:
 GameObject:
   m_PrefabParentObject: {fileID: 126400, guid: 77c445818c315ad45b3cd0310556c5e3, type: 2}
   m_PrefabInternal: {fileID: 1992859635}
---- !u!68 &1715638261
-EdgeCollider2D:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1715638258}
-  m_Enabled: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_Offset: {x: 0, y: 0}
-  m_Points:
-  - {x: -2.61500001, y: 0}
-  - {x: 2.61500001, y: 0}
 --- !u!1001 &1800479456
 Prefab:
   m_ObjectHideFlags: 0
@@ -529,6 +515,10 @@ Prefab:
     - target: {fileID: 424914, guid: 77c445818c315ad45b3cd0310556c5e3, type: 2}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11497334, guid: 77c445818c315ad45b3cd0310556c5e3, type: 2}
+      propertyPath: health
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 77c445818c315ad45b3cd0310556c5e3, type: 2}

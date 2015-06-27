@@ -29,6 +29,8 @@ public class GameManager : MonoBehaviour {
 	private long monkeySpawnTime;
 	private long houseSpawnTime;
 
+	private bool gameRunning = true;
+
 	// Use this for initialization
 	void Start () {
 		tabletsDelivered = 0;
@@ -43,6 +45,9 @@ public class GameManager : MonoBehaviour {
 	}
 	
 	void FixedUpdate () {
+
+		if (!gameRunning)
+			return;
 
 		manaSlider.value += manaRechargeAmount * Time.fixedDeltaTime * 3;
 		monkeySpawnRate *= .9999999F;
@@ -71,6 +76,8 @@ public class GameManager : MonoBehaviour {
 		monkeySpawnTime = 1000;
 		houseSpawnTime = 500;
 		tabletsDelivered = 0;
+
+		gameRunning = true;
 	}
 
 	public GameObject getTablet() {
@@ -126,6 +133,10 @@ public class GameManager : MonoBehaviour {
 	void spawnHouse() {
 		GameObject house = (GameObject) Instantiate(this.house, mainCamera.transform.position + new Vector3 (15.0F, -5.0F, 10.0F), Quaternion.identity);
 
+	}
+
+	public void endGame() {
+		gameRunning = false;
 	}
 }
 
