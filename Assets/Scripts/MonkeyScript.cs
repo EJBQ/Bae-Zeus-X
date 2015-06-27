@@ -11,9 +11,9 @@ public class MonkeyScript : MonoBehaviour {
 			transform.position.x)) *
 			Mathf.Rad2Deg - 90;
 
-		transform.eulerAngles = new Vector3 (0, 0, z);
+		transform.eulerAngles = new Vector3 (0, 0, z - 90);
 
-		this.GetComponent<Rigidbody2D>().AddForce(gameObject.transform.up * speed);
+		this.GetComponent<Rigidbody2D>().AddForce(-1 * gameObject.transform.right * speed);
 	}
 
 	void OnTriggerEnter2D(Collider2D other) {
