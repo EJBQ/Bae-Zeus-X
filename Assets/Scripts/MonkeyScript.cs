@@ -32,12 +32,13 @@ public class MonkeyScript : CharacterBehavior {
 		}
 		if (deathFlag) {
 			this.GetComponent<Rigidbody2D>().velocity = new Vector3(0.0F, 10.0F, 0.0F);
+			if(transform.position.y > 11) Destroy(this.gameObject);
 		}
 	}
 	
 	void OnTriggerEnter2D(Collider2D other) {
 		// I should probably error check this but fuck it
-		if (other.gameObject == player) {
+		if (other.gameObject.CompareTag("Health")) {
 			Destroy (other.gameObject);
 			deathAnim ();
 		}
@@ -50,7 +51,7 @@ public class MonkeyScript : CharacterBehavior {
 	}
 	
 	private void deathAnim() {
-		this.gameObject.GetComponent<Rotator> ().rotateSpeed = 10;
+		this.gameObject.GetComponent<Rotator> ().rotateSpeed = 15;
 		this.deathFlag = true;
 	}
 	
@@ -61,6 +62,6 @@ public class MonkeyScript : CharacterBehavior {
 	void Toss() {
 		GameObject iPhone = (GameObject)Instantiate (this.iPhone, this.gameObject.transform.position, Quaternion.identity);
 		Rigidbody2D rb2d = iPhone.GetComponent<Rigidbody2D> ();
-		rb2d.velocity = new Vector3 (-6.0f, 6.0f, 0.0f);
+		rb2d.velocity = new Vector3 (-10.0f, 6.0f, 0.0f);
 	}
 }

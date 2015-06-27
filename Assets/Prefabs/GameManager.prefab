@@ -49,6 +49,9 @@ MonoBehaviour:
   lightning: {fileID: 164106, guid: 0f40431a746f8734f836d6aec6018028, type: 2}
   monkey: {fileID: 183844, guid: ecce2aab166cadf40826a2366cdd822e, type: 2}
   house: {fileID: 182130, guid: 7a526df42d3dc194a828963f2411662e, type: 2}
+  house2: {fileID: 158810, guid: a7a899494a63cd04ab25c0969d2b78d9, type: 2}
+  house3: {fileID: 133104, guid: 87a9a1217bcdcbe49a45bc91e7287a8d, type: 2}
+  house4: {fileID: 115474, guid: 5cb518a5d898bbd429d5c14979318c1f, type: 2}
   mainCamera: {fileID: 0}
 --- !u!114 &11477860
 MonoBehaviour:

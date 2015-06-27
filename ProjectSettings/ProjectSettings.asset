@@ -121,7 +121,7 @@ PlayerSettings:
   AndroidTargetDevice: 0
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
-  AndroidKeystoreName: C:/Users/roxtay/BaeZeus/Bae-Zeus-X/user.keystore
+  AndroidKeystoreName: C:/Users/ericquin/Documents/Bae'Zeus X/user.keystore
   AndroidKeyaliasName: key
   AndroidTVCompatibility: 1
   AndroidIsGame: 1

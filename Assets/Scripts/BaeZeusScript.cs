@@ -45,6 +45,10 @@ public class BaeZeusScript : CharacterBehavior {
 	public override void setHealth(int newHealth) {
 		this.health = newHealth;
 	}
+
+	public int getHealth() {
+		return health;
+	}
 	
 	private void deathAnim() {
 		this.gameObject.GetComponent<Rotator> ().rotateSpeed = 10;

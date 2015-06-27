@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour {
 	public int manaDownAmount;
 	public int manaRechargeAmount;
 	private int shots;
+	private int highScore;
 	public int tabletsDelivered;
 
 	public GameObject player;
@@ -73,13 +74,13 @@ public class GameManager : MonoBehaviour {
 		monkeySpawnTime --;
 		if (monkeySpawnTime <= 0) {
 			spawnMonkey ();
-			monkeySpawnTime = (long) (Random.value * monkeySpawnRate * 800F);
+			monkeySpawnTime = (long) (100 + Random.value * monkeySpawnRate * 400F);
 		}
 
 		houseSpawnTime --;
 		if (houseSpawnTime <= 0) {
 			spawnHouse ();
-			houseSpawnTime = (long) (Random.value * houseSpawnRate * 400F);
+			houseSpawnTime = (long) (50 + Random.value * houseSpawnRate * 200F);
 		}
 
 	}
@@ -87,6 +88,7 @@ public class GameManager : MonoBehaviour {
 	void gameStart() {
 		tabletLives = 10;
 		shots = 0;
+		player.GetComponent<Rotator> ().rotateSpeed = 0;
 
 		tabletsDelivered = 0;
 		monkeySpawnTime = 400;
@@ -101,13 +103,21 @@ public class GameManager : MonoBehaviour {
 		return tablet;
 	}
 
-	// Catch all for everything that happens when Bae is hurt :(
-	public void takeDamage(){
-
+	public int getScore() {
+		return highScore;
 	}
 
 	void OnGUI() {
-		GUI.Label(new Rect(Screen.width /16, Screen.height/16, Screen.width/16, Screen.height/16), "Score: " + tabletsDelivered); 
+		GUI.skin.label.fontSize = 20;
+		GUI.skin.button.fontSize = 20;
+
+		int lives = 0;
+		if (player != null) {
+			lives = player.GetComponent<BaeZeusScript> ().getHealth();
+		}
+		GUI.Label(new Rect(Screen.width /16, Screen.height/16, Screen.width/8, Screen.height/8), "Score: " + tabletsDelivered + "\n" 
+		          + "Tablets Left: " + tabletLives + "\n" 
+		          + "Lives Left: " + lives); 
 		if (!gameRunning) {
 			if(GUI.Button(new Rect(Screen.width /2, Screen.height/2, Screen.width/8, Screen.height/8), "Start")) {
 				gameStart();
@@ -117,6 +127,7 @@ public class GameManager : MonoBehaviour {
 
 	// Right now activated when TestButton is clicked!!
 	public void shootMana(){
+		if (gameRunning) {
 		if (manaSlider.value > manaDownAmount) {
 			manaSlider.value -= manaDownAmount;
 			Debug.Log (++shots);
@@ -124,6 +135,7 @@ public class GameManager : MonoBehaviour {
 		} else {
 			Debug.Log ("No Mana left");
 			shots = 0;
+		}
 		}
 	}
 
@@ -140,9 +152,11 @@ public class GameManager : MonoBehaviour {
 	}
 
 	void dropTablet() {
-		GameObject tablet = (GameObject) Instantiate(getTablet(), player.transform.position, Quaternion.identity);
-		Rigidbody2D rb2d = tablet.GetComponent<Rigidbody2D> ();
-		rb2d.velocity = new Vector3(0.0F, -5.0F, 0.0F);
+		if (gameRunning) {
+			GameObject tablet = (GameObject)Instantiate (getTablet (), player.transform.position, Quaternion.identity);
+			Rigidbody2D rb2d = tablet.GetComponent<Rigidbody2D> ();
+			rb2d.velocity = new Vector3 (0.0F, -5.0F, 0.0F);
+		}
 	}
 
 	void throwLightning() {
@@ -195,7 +209,16 @@ public class GameManager : MonoBehaviour {
 	
 	public void endGame() {
 		gameRunning = false;
+
+		if (shots > highScore)
+			highScore = shots;
+
+		GameObject[] respawns;
+		respawns = GameObject.FindGameObjectsWithTag("Enemy");
+		foreach(GameObject go in respawns) {
+			Destroy(go);
+		}
 	}
+	
 }
-
-
+	
