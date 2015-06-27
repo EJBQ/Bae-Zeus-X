@@ -210,8 +210,8 @@ public class GameManager : MonoBehaviour {
 	public void endGame() {
 		gameRunning = false;
 
-		if (shots > highScore)
-			highScore = shots;
+		if (tabletsDelivered > highScore)
+			highScore = tabletsDelivered;
 
 		GameObject[] respawns;
 		respawns = GameObject.FindGameObjectsWithTag("Enemy");
