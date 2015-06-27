@@ -210,11 +210,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22474860, guid: f9cb116884e42e84e997dc4cd784a64c, type: 2}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22474860, guid: f9cb116884e42e84e997dc4cd784a64c, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22430862, guid: f9cb116884e42e84e997dc4cd784a64c, type: 2}
       propertyPath: m_SizeDelta.y
@@ -602,7 +602,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 126400, guid: 77c445818c315ad45b3cd0310556c5e3, type: 2}
       propertyPath: m_TagString
-      value: Player
+      value: Health
       objectReference: {fileID: 0}
     - target: {fileID: 6817364, guid: 77c445818c315ad45b3cd0310556c5e3, type: 2}
       propertyPath: m_Enabled

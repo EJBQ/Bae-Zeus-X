@@ -39,7 +39,7 @@ public class MonkeyScript : CharacterBehavior {
 	void OnTriggerEnter2D(Collider2D other) {
 		// I should probably error check this but fuck it
 		if (other.gameObject.CompareTag("Health")) {
-			Destroy (other.gameObject);
+			other.gameObject.GetComponent<CharacterBehavior>().loseHealth();
 			deathAnim ();
 		}
 		// TODO: Make you lose.

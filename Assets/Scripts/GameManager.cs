@@ -89,6 +89,7 @@ public class GameManager : MonoBehaviour {
 		tabletLives = 10;
 		shots = 0;
 		player.GetComponent<Rotator> ().rotateSpeed = 0;
+		player.GetComponent<CharacterBehavior> ().setHealth (3);
 
 		tabletsDelivered = 0;
 		monkeySpawnTime = 400;
@@ -115,7 +116,7 @@ public class GameManager : MonoBehaviour {
 		if (player != null) {
 			lives = player.GetComponent<BaeZeusScript> ().getHealth();
 		}
-		GUI.Label(new Rect(Screen.width /16, Screen.height/16, Screen.width/8, Screen.height/8), "Score: " + tabletsDelivered + "\n" 
+		GUI.Label(new Rect(Screen.width /16, Screen.height/16, Screen.width/4, Screen.height/4), "Score: " + tabletsDelivered + "\n" 
 		          + "Tablets Left: " + tabletLives + "\n" 
 		          + "Lives Left: " + lives); 
 		if (!gameRunning) {
