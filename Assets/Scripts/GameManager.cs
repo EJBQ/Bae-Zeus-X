@@ -82,6 +82,10 @@ public class GameManager : MonoBehaviour {
 
 	}
 
+	void OnGUI() {
+		GUI.Label(new Rect(10,10,40,40), "Score: " + tabletsDelivered); 
+	}
+
 	// Right now activated when TestButton is clicked!!
 	public void shootMana(){
 		if (manaSlider.value > manaDownAmount) {

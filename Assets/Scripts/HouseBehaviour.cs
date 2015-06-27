@@ -5,7 +5,7 @@ public class HouseBehaviour : MonoBehaviour {
 
 	public Texture success1, success2, success3;
 	Texture[] texArr;
-	public int speed;
+	private int speed = 3;
 	private Rigidbody2D rb;
 	private BoxCollider2D boxCollider;
 	private bool displayMessage;
